@@ -1,4 +1,5 @@
 if(!require(choiceDes)){install.packages("choiceDes");library(choiceDes)}
+setwd("~/GitHub/choice-survey")
 
 
 levs1 <- c(3,3,3)
