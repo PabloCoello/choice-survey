@@ -7,27 +7,31 @@ dataDir <-
   "C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys"
 setwd(dataDir)
 
-code <- c("D", "D", "D")
-alternatives <- c("Alt A", "Alt B", "Alt C")
-attributes <- c("Economic", "Social", "Environmental")
-n.sets <- 8
+code <- c("D", "D", "D", "D")
+alternatives <- c("Alternativa A", "Alternativa B", "Alternativa C")
+attributes <- c("Vulnerabilidad económica", 
+                "Vulnerabilidad social",
+                "Vulnerabilidad medioambiental", 
+                "Coste del tratamiento")
+n.sets <- 12
 n.alts <-3
-alt.cte <- c(0, 0, 0)
+alt.cte <- NULL
 
-mu <- c(-0.4,-1,0.2,1, 0.4, 1)
+mu <- c(0.4, 1, 0.2, 0.4, 0.3, 0.4, 0.5, 0.7, -0.1, -0.2, -0.3, -0.4)
 sigma <- diag(length(mu))
 
 labels <- vector(mode = "list", length(attributes))
-labels[[1]] <- c("$10", "$5", "$1")
-labels[[2]] <- c("Buena", "Normal", "Mala")
-labels[[3]] <- c("Buena", "Normal", "Mala")
+labels[[1]] <- c("0€/ha", "1.000€/ha", "2.000€/ha")
+labels[[2]] <- c("Baja", "Media", "Alta")
+labels[[3]] <- c("No significativa", "Baja", "Media", "Alta", "Muy alta")
+labels[[3]] <- c("2.000€/ha", "4.000€/ha", "6.000€/ha", "8.000€/ha", "10.000€/ha")
 b.text <- "Please choose the alternative you prefer"
 i.text <- "Welcome, here are some instructions ... good luck!"
 e.text <- "Thanks for taking the survey"
 
 # Design
 
-cs <- Profiles(lvls = c(3, 3, 3), coding = code)
+cs <- Profiles(lvls = c(3, 3, 5, 5), coding = code)
 
 M <- MASS::mvrnorm(n = 500, mu = mu, Sigma = sigma)
 D <- Modfed(
@@ -39,6 +43,8 @@ D <- Modfed(
 )
 D$error
 xdes <- D$design
+
+DD <- Decode(des=xdes, lvl.names = labels, coding = code)
 
 
 # Survey
@@ -56,6 +62,10 @@ SurveyApp (
   buttons.text = b.text,
   intro.text = i.text,
   end.text = e.text,
+  prior.mean = mu,
+  prior.covar = sigma,
+  cand.set = cs,
+  n.draws = 100,
   data.dir = dataDir
 )
 
