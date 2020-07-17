@@ -3,14 +3,15 @@ if(!require(bayesm)){install.packages("bayesm");library(bayesm)}
 if(!require(mlogit)){install.packages("mlogit");library(mlogit)}
 
 dataDir <-
-  "C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys"
+  "/mnt/c/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys"
 setwd(dataDir)
 load("adaptive_design_12.RData")
 
+res <- '~/results/'
 
 SurveyApp (
   des = xdes,
-  n.total = n.sets,
+  n.total = 16,
   alts = alternatives,
   atts = attributes,
   lvl.names = labels,
@@ -22,5 +23,6 @@ SurveyApp (
   prior.covar = sigma,
   cand.set = cs,
   n.draws = 100,
-  data.dir = dataDir
+  data.dir = res,
+  parallel=TRUE
 )
