@@ -10,7 +10,7 @@ if(!require(rsconnect)){install.packages("rsconnect");library(rsconnect)}
 #Parameters
 
 dataDir <-
-  "~/OneDrive - Universidade de Santiago de Compostela/surveys"
+  "C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys"
 setwd(dataDir)
 load(file="adaptive_design_12.RData")
 
@@ -52,8 +52,22 @@ D$error
 xdes <- D$design
 
 DD <- Decode(des=xdes,n.alts = n.alts, lvl.names = labels, coding = code)
-
 DD
+
+# Adaptive design
+truepref <- c(0.3, 0.4, 0.3, 0.5, 0.3, 0.6, 0.7, 0.8, -0.2, -0.3, -0.4, -0.5)
+
+y.sim <- RespondMNL(par = truepref, des = xdes, n.alts=n.alts)
+y.sim
+
+draws <- ImpsampMNL(n.draws = 100, prior.mean = mu, prior.covar = sigma,
+                    des = xdes, n.alts = n.alts, y = y.sim)
+draws
+
+memory.limit(9999999999)
+set <- SeqMOD(des=xdes, cand.set = cs, n.alts = n.alts,
+              par.draws = draws$sample, prior.covar = sigma,
+              weights= draws$weights, parallel = TRUE, reduce=TRUE)
 
 # Survey
 
