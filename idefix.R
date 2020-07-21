@@ -69,6 +69,10 @@ set <- SeqMOD(des=xdes, cand.set = cs, n.alts = n.alts,
               par.draws = draws$sample, prior.covar = sigma,
               weights= draws$weights, parallel = TRUE, reduce=TRUE)
 
+set <- SeqCEA(des=xdes, lvls=c(3,3,5,5), coding = code, n.alts = n.alts,
+              par.draws = draws$sample, prior.covar = sigma,
+              weights= draws$weights, parallel = TRUE, reduce=TRUE)
+set
 # Survey
 
 xdes
