@@ -1,5 +1,6 @@
 {
-  "path_to_design":"C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys/adaptive_design_12.RData",
+  "path_to_storage":"/mnt/c/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys/",
+  "design_name":"adaptive_01",
   "attributes": [
     "Vulnerabilidad económica",
     "Vulnerabilidad social",
@@ -12,7 +13,8 @@
   "labels3":["No significativa", "Baja", "Media", "Alta", "Muy alta"],
   "labels4":["2.000€/ha", "4.000€/ha", "6.000€/ha", "8.000€/ha", "10.000€/ha"],
   "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
-  "n.sets" : 12,
+  "n.sets_design" : 12,
+  "n.sets_survey" : 16,
   "n.alts" : 3,
   "alt.cte" : null,
   "mu": [0.4, 1, 0.2, 0.4, 0.3, 0.4, 0.5, 0.7, -0.1, -0.2, -0.3, -0.4],
