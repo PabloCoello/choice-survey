@@ -55,4 +55,3 @@ conf <- fromJSON(file='./conf.json')
 design <- generate_design(conf=conf[["design_conf"]])
 saveRDS(design, paste('./Designs/', conf[["design_conf"]][['design_name']], '.rds', sep=''))
 stopCluster(cluster_name)
-asdklfñhañfkldsfhklñasdfhf
