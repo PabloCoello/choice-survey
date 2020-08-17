@@ -23,7 +23,7 @@ gen_sigma <- function(conf){
 
 gen_labels <- function(conf){
     labels <- list()
-    for(i in 1:length(conf['attributes'])){
+    for(i in 1:length(conf[['attributes']])){
         labels[[i]] <- conf[[paste('labels', i, sep='')]]
     }
     return(labels)
@@ -52,5 +52,5 @@ cluster_name <- makeCluster(cores, type = "SOCK")
 
 setwd(system("pwd", intern = T) )
 conf <- fromJSON(file='./conf.json')
-design <- generate_design(conf)
-save(design, paste('./Designs/', conf[['design_name']], '.RData', sep=''))
+design <- generate_design(conf=conf[["design_conf"]])
+saveRDS(design, paste('./Designs/', conf[["design_conf"]][['design_name']], '.rds', sep=''))
