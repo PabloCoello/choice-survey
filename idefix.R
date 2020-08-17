@@ -2,7 +2,12 @@ if(!require(idefix)){install.packages("idefix");library(idefix)}
 if(!require(bayesm)){install.packages("bayesm");library(bayesm)}
 if(!require(mlogit)){install.packages("mlogit");library(mlogit)}
 if(!require(rsconnect)){install.packages("rsconnect");library(rsconnect)}
+if(!require(parallel)){install.packages("parallel");library(parallel)}
+if(!require(doSNOW)){install.packages("doSNOW");library(doSNOW)}
 
+
+cores <- detectCores(all.tests = FALSE, logical = TRUE)
+cluster_name <- makeCluster(cores, type = "SOCK")
 #rsconnect::setAccountInfo(name='ecoiuris',
 #                          token='45F8C61BCA58B3EC9C85948E570C423B',
 #                          secret='6nEgZw5xO1FwGLJXlB5M719M6ZeC8eK7RWmGR0yc')
