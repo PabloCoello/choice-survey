@@ -1,6 +1,6 @@
 DM_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-WO_DIR=/opt/global-sentinel
-DK_IMG=global-sentinel-dev-env
+WO_DIR=/opt/choice-survey
+DK_IMG=choice-survey-dev-env
 
 function build_dev_image () {
 	docker build -t "${DK_IMG}" "${DM_DIR}"/Docker/
