@@ -1,4 +1,5 @@
 {
+  "path_to_design":"C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys/adaptive_design_12.RData",
   "attributes": [
     "Vulnerabilidad económica",
     "Vulnerabilidad social",
@@ -15,5 +16,10 @@
   "n.alts" : 3,
   "alt.cte" : null,
   "mu": [0.4, 1, 0.2, 0.4, 0.3, 0.4, 0.5, 0.7, -0.1, -0.2, -0.3, -0.4],
-  "sigma": null
+  "sigma": null,
+  "survey_conf":{
+      "b.text": "Please choose the alternative you prefer",
+      "i.text": "Welcome, here are some instructions ... good luck!",
+      "e.text": "Thanks for taking the survey"
+  }
 }
