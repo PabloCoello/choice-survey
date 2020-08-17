@@ -44,7 +44,6 @@ generate_design <- function(conf){
     alt.cte = conf[['alt.cte']],
     par.draws = design[['M']]
   )
-  print(paste("Error of the model: ", D$error))
   return(design)
 }
 
