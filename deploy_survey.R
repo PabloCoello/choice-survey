@@ -9,7 +9,7 @@ cluster_name <- makeCluster(cores, type = "SOCK")
 setwd(system("pwd", intern = T) )
 conf <- fromJSON(file='./conf.json')
 
-load(paste('./Designs/', conf['design_name'], '.RData', sep='')
+load(paste('./Designs/', conf[['design_conf']][['design_name']], '.rds', sep=''))
 
 
 SurveyApp (
