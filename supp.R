@@ -52,3 +52,11 @@ draws <- ImpsampMNL(n.draws = 100, prior.mean = conf[["design_conf"]][['mu']], p
 
 
 #set
+
+install.packages("googleVis")
+library(googleVis)
+plot(gvisTable(data.frame(set)))
+summary(table_one, title = "Gapminder Data")
+
+library(knitr)
+knitr::kable(set)
