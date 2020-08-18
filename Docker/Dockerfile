@@ -23,4 +23,4 @@ RUN R -e "install.packages('idefix',dependencies=TRUE, repos='http://cran.rstudi
     && R -e "install.packages('mlogit',dependencies=TRUE, repos='http://cran.rstudio.com/')" 
 
 
-WORKDIR /opt/choice_survey/
+WORKDIR /opt/choice-survey/
