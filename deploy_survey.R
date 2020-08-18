@@ -39,7 +39,10 @@ format_set_print <- function(des, i, design, conf) {
       lvl.names = design[['labels']],
       coding = conf[["design_conf"]][['att_code']]
     )
-  print(dec$design)
+  design <- t(dec$design)
+  rownames(design) <- conf[['design_conf']][['attributes']]
+  colnames(design) <- conf[['design_conf']][['alternatives']]
+  print(knitr::kable(design), 'simple')
 }
 
 
