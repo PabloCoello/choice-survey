@@ -28,15 +28,15 @@ function execute () {
 }
 
 function generate_design () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript  "${WO_DIR}"/generate_design.R run
+	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript -W "${WO_DIR}"/generate_design.R run
 }
 
 function deploy_survey () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript  "${WO_DIR}"/deploy_survey.R run
+	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript -W "${WO_DIR}"/deploy_survey.R run
 }
 
 function analyse_data () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript  "${WO_DIR}"/analyse_data.R
+	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript -W "${WO_DIR}"/analyse_data.R
 }
 
 function modify_conf () {
