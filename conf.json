@@ -3,21 +3,21 @@
   "design_conf": {
     "design_name": "adaptive_01",
     "attributes": [
-      "Vulnerabilidad económica",
+      "Vulnerabilidad economica",
       "Vulnerabilidad social",
       "Vulnerabilidad medioambiental",
       "Coste del tratamiento"
     ],
     "att_code": ["D", "D", "D", "D"],
-    "labels1": ["0€/ha", "1.000€/ha", "2.000€/ha"],
+    "labels1": ["0 euros por ha", "1.000 euros por ha", "2.000 euros por ha"],
     "labels2": ["Baja", "Media", "Alta"],
     "labels3": ["No significativa", "Baja", "Media", "Alta", "Muy alta"],
     "labels4": [
-      "2.000€/ha",
-      "4.000€/ha",
-      "6.000€/ha",
-      "8.000€/ha",
-      "10.000€/ha"
+      "2.000 euros por ha",
+      "4.000 euros por ha",
+      "6.000 euros por ha",
+      "8.000 euros por ha",
+      "10.000 euros por ha"
     ],
     "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
     "n.sets_design": 12,
