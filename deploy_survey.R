@@ -2,6 +2,7 @@ suppressMessages(library(idefix))
 suppressMessages(library(parallel))
 suppressMessages(library(doSNOW))
 suppressMessages(library(rjson))
+suppressMessages(library(utf8))
 
 
 get_answer <- function(conf) {
@@ -42,7 +43,7 @@ format_set_print <- function(des, i, design, conf) {
   design <- t(dec$design)
   rownames(design) <- conf[['design_conf']][['attributes']]
   colnames(design) <- conf[['design_conf']][['alternatives']]
-  print(knitr::kable(design), 'simple')
+  utf8_print(knitr::kable(design, 'simple', align = "lccrr", escape=TRUE), char=100)
 }
 
 
