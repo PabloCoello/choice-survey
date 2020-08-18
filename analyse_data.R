@@ -1,6 +1,6 @@
-if(!require(idefix)){install.packages("idefix");library(idefix)}
-if(!require(mlogit)){install.packages("mlogit");library(mlogit)}
-if(!require(rjson)){install.packages("rjson");library(rjson)}
+suppressMessages(library(idefix))
+suppressMessages(library(mlogit))
+suppressMessages(library(rjson))
 
 
 gen_formula <- function(data) {

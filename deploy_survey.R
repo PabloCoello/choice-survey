@@ -1,7 +1,7 @@
-if(!require(idefix)){install.packages("idefix");library(idefix)}
-if(!require(parallel)){install.packages("parallel");library(parallel)}
-if(!require(doSNOW)){install.packages("doSNOW");library(doSNOW)}
-if(!require(rjson)){install.packages("rjson");library(rjson)}
+suppressMessages(library(idefix))
+suppressMessages(library(parallel))
+suppressMessages(library(doSNOW))
+suppressMessages(library(rjson))
 
 
 get_answer <- function(conf) {
@@ -44,7 +44,6 @@ format_set_print <- function(des, i, design, conf) {
   colnames(design) <- conf[['design_conf']][['alternatives']]
   print(knitr::kable(design), 'simple')
 }
-
 
 cores <- detectCores(all.tests = FALSE, logical = TRUE)
 cluster_name <- makeCluster(cores, type = "SOCK")

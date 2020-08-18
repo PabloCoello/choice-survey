@@ -1,7 +1,7 @@
-if(!require(idefix)){install.packages("idefix");library(idefix)}
-if(!require(parallel)){install.packages("parallel");library(parallel)}
-if(!require(doSNOW)){install.packages("doSNOW");library(doSNOW)}
-if(!require(rjson)){install.packages("rjson");library(rjson)}
+suppressMessages(library(idefix))
+suppressMessages(library(parallel))
+suppressMessages(library(doSNOW))
+suppressMessages(library(rjson))
 
 
 gen_lvls <- function(conf) {
