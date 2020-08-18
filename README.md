@@ -1,10 +1,6 @@
 # choice-survey
-R functions for designing a choice experiment survey.
+R functions for designing and deploy an adaptive choice experiment survey. Mainly based in the "idefix" R package.
 
-## build docker image
+## Start app:
 
-bash utils.sh build
-
-## enter dev env
-
-bash utils enter
+bash utils.sh
