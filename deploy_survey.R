@@ -45,6 +45,7 @@ format_set_print <- function(des, i, design, conf) {
   print(knitr::kable(design), 'simple')
 }
 
+
 cores <- detectCores(all.tests = FALSE, logical = TRUE)
 cluster_name <- makeCluster(cores, type = "SOCK")
 
