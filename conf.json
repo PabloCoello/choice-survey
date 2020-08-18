@@ -1,5 +1,5 @@
 {
-  "path_to_storage": "/mnt/c/Users/pablo/OneDrive - Universidade de Santiago de Compostela/surveys/",
+  "path_to_storage": "./Results",
   "design_conf": {
     "design_name": "adaptive_01",
     "attributes": [
