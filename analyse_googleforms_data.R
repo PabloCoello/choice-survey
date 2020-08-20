@@ -4,8 +4,6 @@ library(rjson)
 library(readODS)
 library(Rchoice)
 
-setwd("~/Escritorio/analisis encuestas google forms")
-
 
 get_design <- function(path){
   design <- read_ods(path)
@@ -71,11 +69,14 @@ get_answer <- function(n, n.alts) {
   return(toret)
 }
 
-des = get_design(path='design.ods')
-df <- read_excel("Actuaciones post-incendio (respuestas).xlsx")
+setwd(system("pwd", intern = T))
+conf <- fromJSON(file = './conf/conf.json')
+forms_conf <- fromJSON(file = './conf/google_forms_conf.json')
+
+des <- get_design(path=forms_conf[['path_to_design']])
+df <- read_excel(forms_conf[['path_to_file']])
 df <- format_df(df)
 df <- encode_df(df)
-df
 
 for(respondent in 1:nrow(df)){
   resp <- c()
@@ -107,7 +108,6 @@ rchoice_data <-
   )
 
 
-formula <- as.formula('Choice ~ no.choice.cte + Var12 + Var13 + Var22 + Var23 + Var32 + Var33 + Var34 + Var35 + Var42 + Var43 + Var44 + Var45')
-est <- Rchoice(formula, data = rchoice_data, family = binomial("logit"))
+formula <- as.formula(form_conf[['formula']])
+est <- Rchoice(formula, data = rchoice_data, family = binomial(form_conf[['model']]))
 summary(est)
-plot(est)
