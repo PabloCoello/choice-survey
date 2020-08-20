@@ -56,10 +56,12 @@ function analyse_data () {
 			sudo nano ./conf/google_forms_conf.json
 			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_googleforms_data.R
 			;;
-		8)
-			exit 1
+		3)
+			echo 'Return';
+			break
 			;;
 	esac
+	done
 }
 
 
