@@ -35,13 +35,33 @@ function deploy_survey () {
 	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/deploy_survey.R run
 }
 
-function analyse_data () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_data.R
-}
-
 function modify_conf () {
 	sudo nano ./conf.json
 }
+
+function analyse_data () {
+	while :
+		do
+		echo "1. Analyse adaptive survey data"
+		echo "2. Analyse external google forms data"
+		echo "3. EXIT"
+		echo -n "Choose one option [1 - 8]: "
+		read caso
+	
+	case $caso in
+		1)
+			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_data.R
+			;;
+		2)
+			sudo nano ./conf/google_forms_conf.json
+			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_googleforms_data.R
+			;;
+		8)
+			exit 1
+			;;
+	esac
+}
+
 
 case $opcion in
 	1)
