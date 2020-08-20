@@ -15,7 +15,7 @@ gen_formula <- function(data) {
 }
 
 setwd(system("pwd", intern = T))
-conf <- fromJSON(file = './conf.json')
+conf <- fromJSON(file = './conf/conf.json')
 data <- LoadData(data.dir = conf[["path_to_storage"]], type = "num")
 
 des <- as.matrix(data[, 3:(ncol(data) - 1)])

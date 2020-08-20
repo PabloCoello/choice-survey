@@ -51,7 +51,7 @@ cores <- detectCores(all.tests = FALSE, logical = TRUE)
 cluster_name <- makeCluster(cores, type = "SOCK")
 
 setwd(system("pwd", intern = T))
-conf <- fromJSON(file = './conf.json')
+conf <- fromJSON(file = './conf/conf.json')
 design <- readRDS(paste('./Designs/',
                         conf[['design_conf']][['design_name']],
                         '.rds',
