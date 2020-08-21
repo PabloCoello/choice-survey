@@ -45,7 +45,7 @@ function analyse_data () {
 		echo "1. Analyse adaptive survey data"
 		echo "2. Analyse external google forms data"
 		echo "3. EXIT"
-		echo -n "Choose one option [1 - 8]: "
+		echo -n "Choose one option [1 - 3]: "
 		read caso
 	
 	case $caso in
