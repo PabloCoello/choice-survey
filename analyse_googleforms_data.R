@@ -6,8 +6,11 @@ library(Rchoice)
 
 get_design <- function(path){
   design <- read_excel(path)
-  rownames(design) <- design[,1]
+  names <- design$...1
   design[,1] <- NULL
+  for(row in 1:nrow(design)){
+    rownames(design)[row] <- names[row]
+  }
   design <- as.matrix(design)
   return(design)
 }
