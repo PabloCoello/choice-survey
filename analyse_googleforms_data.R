@@ -1,12 +1,11 @@
 library(readxl)
 library(idefix)
 library(rjson)
-library(readODS)
 library(Rchoice)
 
 
 get_design <- function(path){
-  design <- read_ods(path)
+  design <- read_excel(path)
   rownames(design) <- design[,1]
   design[,1] <- NULL
   design <- as.matrix(design)
@@ -111,3 +110,19 @@ rchoice_data <-
 formula <- as.formula(form_conf[['formula']])
 est <- Rchoice(formula, data = rchoice_data, family = binomial(form_conf[['model']]))
 summary(est)
+
+###############################################
+#Multicriteria Saaty analysis
+###############################################
+
+format_multi_df <- function(df){
+  df <- df[,grep('¿En qué alternativa preferiría aplicar', colnames(df))]
+  for(col in 1:ncol(df)){
+    colnames(df)[col] <- substr(colnames(df)[col], start=1, stop = 1)
+    if(is.na(as.numeric(colnames(df[,col])))){
+      df[,col]<-NULL
+    }
+  }
+
+  return(df)
+}
