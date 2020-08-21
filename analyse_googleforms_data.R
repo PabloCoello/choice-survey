@@ -130,5 +130,13 @@ format_multi_df <- function(df){
     #}
   }
 
-  return(df)
+  return(list(criterios, grados))
 }
+
+extract_weights <- function(list){
+  return()
+}
+
+
+list <- format_multi_df(df)
+grados
