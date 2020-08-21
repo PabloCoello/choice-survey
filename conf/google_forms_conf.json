@@ -1,6 +1,6 @@
 {
-    "path_to_file": "~/Escritorio/analisis encuestas google forms/Actuaciones post-incendio (respuestas).xlsx",
-    "path_to_design": "~/Escritorio/analisis encuestas google forms/design.xlsx",
+    "path_to_file": "C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/supp_data/surveys/analisis encuestas google forms/Actuaciones post-incendio (respuestas).xlsx",
+    "path_to_design": "C:/Users/pablo/OneDrive - Universidade de Santiago de Compostela/supp_data/surveys/analisis encuestas google forms/design.xlsx",
     "model": "logit",
     "formula": "Choice ~ no.choice.cte + Var12 + Var13 + Var22 + Var23 + Var32 + Var33 + Var34 + Var35 + Var42 + Var43 + Var44 + Var45",
     "no.choice": true
