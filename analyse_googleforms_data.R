@@ -91,7 +91,14 @@ get_data <- function(df, design){
 
 
 get_estimation <- function(data, forms_conf) {
+  
   formula <- as.formula(forms_conf[['formula']])
+  
+  if(forms_conf[['no.choice']]){
+    n.alts <- forms_conf[['n.alts']] + 1
+  }else{
+    n.alts <- forms_conf[['n.alts']]
+  }
   
   if(forms_conf[['means']]){
     colnames(data)[ncol(data)] <- 'Choice'
@@ -108,8 +115,8 @@ get_estimation <- function(data, forms_conf) {
         pkg = "Rchoice",
         des = des,
         y = y,
-        n.alts = 4,
-        n.sets = 8,
+        n.alts = n.alts,
+        n.sets = forms_conf[['n.sets']],
         n.resp = nrow(df),
         bin = TRUE
       )

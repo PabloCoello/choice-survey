@@ -5,5 +5,7 @@
     "model": "logit",
     "means": true,
     "formula": "Choice ~ no.choice.cte + Var1 + Var2 + Var3 + Var4",
-    "no.choice": true
+    "no.choice": true,
+    "n.alts": 3,
+    "n.sets": 8
 }
