@@ -43,9 +43,10 @@ function analyse_data () {
 	while :
 		do
 		echo "1. Analyse adaptive survey data"
-		echo "2. Analyse external google forms data"
-		echo "3. EXIT"
-		echo -n "Choose one option [1 - 3]: "
+		echo "2. Analyse external google forms data (Choice)"
+		echo "3. Analyse external google forms data (Saaty Multicriteria)"
+		echo "4. EXIT"
+		echo -n "Choose one option [1 - 4]: "
 		read caso
 	
 	case $caso in
@@ -57,6 +58,10 @@ function analyse_data () {
 			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_googleforms_data.R
 			;;
 		3)
+			sudo nano ./conf/multicriteria_conf.json
+			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/saaty_multicriteria.R
+			;;
+		4)
 			echo 'Return';
 			break
 			;;
