@@ -71,47 +71,74 @@ get_answer <- function(n, n.alts) {
   return(toret)
 }
 
+
+get_data <- function(df, design){
+  for(respondent in 1:nrow(df)){
+    resp <- c()
+    for(question in 1:ncol(df)){
+      resp <- c(resp, get_answer(df[respondent,question], n.alts=4))
+    }
+    ind <- array(respondent, dim=nrow(design))
+    toret <- cbind(ind, design, resp)
+    if(respondent==1){
+      matrix <- toret
+    }else{
+      matrix <- rbind(matrix, toret)  
+    }
+  }
+  return(matrix)
+}
+
+
+get_estimation <- function(data, forms_conf) {
+  formula <- as.formula(forms_conf[['formula']])
+  
+  if(forms_conf[['means']]){
+    colnames(data)[ncol(data)] <- 'Choice'
+    est <-
+      Rchoice(formula, 
+              data = data, 
+              family = binomial(forms_conf[['model']]))
+  }else{
+    des <- as.matrix(data[, 2:(ncol(data) - 1)])
+    y <- data[, ncol(data)]
+    
+    rchoice_data <-
+      Datatrans(
+        pkg = "Rchoice",
+        des = des,
+        y = y,
+        n.alts = 4,
+        n.sets = 8,
+        n.resp = nrow(df),
+        bin = TRUE
+      )
+    est <-
+      Rchoice(formula, 
+              data = rchoice_data, 
+              family = binomial(forms_conf[['model']]))
+  }
+  return(est)
+}
+
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 forms_conf <- fromJSON(file = './conf/google_forms_conf.json')
 
-des <- get_design(path=forms_conf[['path_to_design']])
+
 df <- read_excel(forms_conf[['path_to_file']])
 df <- format_df(df)
 df <- encode_df(df)
 
-for(respondent in 1:nrow(df)){
-  resp <- c()
-  for(question in 1:ncol(df)){
-    resp <- c(resp, get_answer(df[respondent,question], n.alts=4))
-  }
-  ind <- array(respondent, dim=nrow(des))
-  toret <- cbind(ind, des, resp)
-  if(respondent==1){
-    matrix <- toret
-  }else{
-    matrix <- rbind(matrix, toret)  
-  }
+
+if(forms_conf[['means']]){
+  design <- get_design(path=forms_conf[['path_to_design_means']])
+}else{
+  design <- get_design(path=forms_conf[['path_to_design']])
 }
-data <- matrix
 
-des <- as.matrix(data[, 2:(ncol(data) - 1)])
-y <- data[, ncol(data)]
-
-rchoice_data <-
-  Datatrans(
-    pkg = "Rchoice",
-    des = des,
-    y = y,
-    n.alts = 4,
-    n.sets = 8,
-    n.resp = nrow(df),
-    bin = TRUE
-  )
-
-
-formula <- as.formula(form_conf[['formula']])
-est <- Rchoice(formula, data = rchoice_data, family = binomial(form_conf[['model']]))
+data = get_data(df, design)
+est = get_estimation(data, forms_conf)
 summary(est)
 
 ###############################################
