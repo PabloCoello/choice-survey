@@ -45,7 +45,7 @@ function analyse_data () {
 		echo "1. Analyse adaptive survey data"
 		echo "2. Analyse external google forms data (Choice)"
 		echo "3. Analyse external google forms data (Saaty Multicriteria)"
-		echo "4. EXIT"
+		echo "4. RETURN"
 		echo -n "Choose one option [1 - 4]: "
 		read caso
 	
