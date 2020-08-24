@@ -1,7 +1,7 @@
-library(readxl)
-library(idefix)
-library(rjson)
-library(Rchoice)
+suppressMessages(library(readxl))
+suppressMessages(library(idefix))
+suppressMessages(library(rjson))
+suppressMessages(library(Rchoice))
 
 
 get_design <- function(path) {

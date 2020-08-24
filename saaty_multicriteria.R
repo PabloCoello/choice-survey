@@ -1,4 +1,4 @@
-library(readxl)
+suppressMessages(library(readxl))
 
 format_multi_df <- function(df){
   criterios <- df[,grep(c('¿Qué criterio'), colnames(df))]
