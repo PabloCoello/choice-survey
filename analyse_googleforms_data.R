@@ -1,11 +1,11 @@
-suppressMessages(library(readxl))
+suppressMessages(library(xlsx))
 suppressMessages(library(idefix))
 suppressMessages(library(rjson))
 suppressMessages(library(Rchoice))
 
 
 get_design <- function(path) {
-  design <- read_excel(path)
+  design <- read.xlsx(path, encoding="UTF-8")
   names <- design$...1
   design[, 1] <- NULL
   for (row in 1:nrow(design)) {
@@ -135,6 +135,7 @@ forms_conf <- fromJSON(file = './conf/google_forms_conf.json')
 
 
 df <- read_excel(forms_conf[['path_to_file']])
+print(df)
 df <- format_df(df)
 df <- encode_df(df)
 
