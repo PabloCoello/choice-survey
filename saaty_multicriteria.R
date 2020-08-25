@@ -32,10 +32,6 @@ get_att <- function(list){
   return(att)
 }
 
-extract_weights <- function(list){
-  return()
-}
-
 
 get_matrix <- function(list, att, row){
 
@@ -69,6 +65,27 @@ get_matrix <- function(list, att, row){
 }
 
 
+normalise_matrix <- function(matrix){
+  normalised_matrix <- matrix
+  for(j in 1:ncol(matrix)){
+    for(i in 1:nrow(matrix)){
+      normalised_matrix[i,j] <- matrix[i,j]/sum(matrix[,j])
+    }
+  }
+  
+  return(normalised_matrix)
+}
+
+
+extract_weights <- function(normalised_matrix){
+  toret <- list()
+  for(row in 1:nrow(normalised_matrix)){
+    toret[[rownames(normalised_matrix)[row]]] <- mean(normalised_matrix[row,])
+  }
+  return(toret)
+}
+
+
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 multi_conf <- fromJSON(file = './conf/multicriteria_conf.json')
@@ -77,7 +94,18 @@ df <- read_excel(multi_conf[['path_to_file']])
 list <- format_multi_df(df)
 att <- get_att(list)
 
-
+weights <- list()
 for(respondent in 1:nrow(list[[1]])){
   matrix <- get_matrix(list, att, row=respondent)
+  matrix <- normalise_matrix(matrix)
+  weights_value <- extract_weights(normalised_matrix = matrix)
+  for(attribute in att){
+    weights[[attribute]] <- c(weights[[attribute]], weights_value[[attribute]])
+  }
 }
+
+for(attribute in att){
+  weights[[attribute]] <- mean(weights[[attribute]])
+}
+weights
+repondent<-12
