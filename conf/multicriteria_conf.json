@@ -1,11 +1,11 @@
 {
     "path_to_file": "./google-data/Actuaciones post-incendio (respuestas).xlsx",
     "pares":{
-        "1":"Vulnerabilidad económica | Coste del tratamiento",
-        "2":"Vulnerabilidad social | Coste del tratamiento",
-        "3":"Vulnerabilidad medioambiental | Coste del tratamiento",
-        "4":"Vulnerabilidad social | Vulnerabilidad económica",
-        "5":"Vulnerabilidad medioambiental | Vulnerabilidad económica",
-        "6":"Vulnerabilidad medioambiental | Vulnerabilidad social"
+        "1":"Vulnerabilidad económica##Coste del tratamiento",
+        "2":"Vulnerabilidad social##Coste del tratamiento",
+        "3":"Vulnerabilidad medioambiental##Coste del tratamiento",
+        "4":"Vulnerabilidad social##Vulnerabilidad económica",
+        "5":"Vulnerabilidad medioambiental##Vulnerabilidad económica",
+        "6":"Vulnerabilidad medioambiental##Vulnerabilidad social"
     }
 }
