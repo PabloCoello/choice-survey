@@ -29,6 +29,7 @@ RUN R -e "install.packages('idefix',dependencies=TRUE, repos='http://cran.rstudi
     && R -e "install.packages('Rchoice',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
     && R -e "install.packages('rJava',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
     && R -e "install.packages('xlsx',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
+    && R -e "install.packages('stringr',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
     && R -e "install.packages('mlogit',dependencies=TRUE, repos='http://cran.rstudio.com/')" 
 
 
