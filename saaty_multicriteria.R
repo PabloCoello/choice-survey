@@ -53,10 +53,12 @@ get_matrix <- function(list, att, row){
         if(rule == i){
           matrix[i,j] <- grad
           matrix[j,i] <- 1/grad
-        }
-        if(rule == j){
+        }else if(rule == j){
           matrix[i,j] <- 1/grad
           matrix[j,i] <- grad
+        }else{
+          matrix[i,j] <- 1
+          matrix[j,i] <- 1
         }
       }
     }
@@ -85,7 +87,7 @@ extract_weights <- function(normalised_matrix){
   return(toret)
 }
 
-
+setwd(here::here())
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 multi_conf <- fromJSON(file = './conf/multicriteria_conf.json')
@@ -107,5 +109,4 @@ for(respondent in 1:nrow(list[[1]])){
 for(attribute in att){
   weights[[attribute]] <- mean(weights[[attribute]])
 }
-weights
-repondent<-12
+print(weights)
