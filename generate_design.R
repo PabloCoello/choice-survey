@@ -5,6 +5,8 @@ suppressMessages(library(rjson))
 
 
 gen_lvls <- function(conf) {
+  #' Return array with number of levels per attribute.
+  
   lvls <- c()
   for (i in 1:length(conf[["attributes"]])) {
     lvls <- c(lvls, length(conf[[paste('labels', i, sep = '')]]))
@@ -12,7 +14,10 @@ gen_lvls <- function(conf) {
   return(lvls)
 }
 
+
 gen_sigma <- function(conf) {
+  #' Generates sigma if it is not pre especified.
+  
   if (is.null(conf[["sigma"]])) {
     sigma <- diag(length(conf[['mu']]))
   } else{
@@ -21,7 +26,10 @@ gen_sigma <- function(conf) {
   return(sigma)
 }
 
+
 gen_labels <- function(conf) {
+  #' Returns an array of labels.
+  
   labels <- list()
   for (i in 1:length(conf[['attributes']])) {
     labels[[i]] <- conf[[paste('labels', i, sep = '')]]
@@ -29,7 +37,11 @@ gen_labels <- function(conf) {
   return(labels)
 }
 
+
 generate_design <- function(conf) {
+  #' Generates design by passign arguments to Modfed() function from
+  #' Idefix package.
+  
   design <- list()
   design[['lvls']] <- gen_lvls(conf)
   design[['sigma']] <- gen_sigma(conf)
@@ -49,14 +61,19 @@ generate_design <- function(conf) {
   return(design)
 }
 
+
+# Set environment:
 cores <- detectCores(all.tests = FALSE, logical = TRUE)
 cluster_name <- makeCluster(cores, type = "SOCK")
-
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
+
+# Generate design:
 design <- generate_design(conf = conf[["design_conf"]])
+
+# Save design data:
 saveRDS(design, paste('./Designs/',
                       conf[["design_conf"]][['design_name']],
                       '.rds',
                       sep = ''))
-stopCluster(cluster_name)
+stopCluster(cluster_name) # Stop multithreading setup
