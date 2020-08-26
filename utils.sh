@@ -36,7 +36,7 @@ function deploy_survey () {
 }
 
 function modify_conf () {
-	sudo nano ./conf.json
+	sudo nano ./conf/conf.json
 }
 
 function analyse_data () {
