@@ -31,5 +31,8 @@
     "i.text": "Welcome, here are some instructions ... good luck!",
     "e.text": "Thanks for taking the survey",
     "n.sets_survey": 16
+  },
+  "analysis_conf":{
+    "model":"logit"
   }
 }
