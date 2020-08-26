@@ -1,9 +1,11 @@
 suppressMessages(library(idefix))
-suppressMessages(library(mlogit))
 suppressMessages(library(rjson))
+suppressMessages(library(Rchoice))
 
 
 gen_formula <- function(data) {
+  #' Builds as.formula object for estimation.
+  
   string <- c('Choice ~ ')
   for (name in names(data)) {
     if (grepl('Var', name)) {
@@ -14,24 +16,44 @@ gen_formula <- function(data) {
   return(formula)
 }
 
+
+format_data <- function(data){
+  #' Format data for Rchoice package.
+  
+  des <- as.matrix(data[, 3:(ncol(data) - 1)])
+  y <- data[, ncol(data)]
+  
+  data <-
+    Datatrans(
+      pkg = "Rchoice",
+      des = des,
+      y = y,
+      n.alts = conf[["design_conf"]][['n.alts']],
+      n.sets = conf[["survey_conf"]][['n.sets_survey']],
+      n.resp = max(data['ID']),
+      bin = TRUE
+    )
+  return(data)
+}
+
+
+# Set conf and environment:
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 data <- LoadData(data.dir = conf[["path_to_storage"]], type = "num")
 
-des <- as.matrix(data[, 3:(ncol(data) - 1)])
-y <- data[, ncol(data)]
-
-logit_data <-
-  Datatrans(
-    pkg = "mlogit",
-    des = des,
-    y = y,
-    n.alts = conf[["design_conf"]][['n.alts']],
-    n.sets = conf[["survey_conf"]][['n.sets_survey']],
-    n.resp = max(data['ID']),
-    bin = TRUE
-  )
+# Get data:
 formula <- gen_formula(data)
-summary(mlogit(formula, data = logit_data))
+data <- format_data(data)
+
+# Perform estimation:
+est <-
+  Rchoice(formula,
+          data = data,
+          family = binomial(conf[['analysis_conf']][['model']]))
+
+# Show results:
+summary(est)
+
 
 
