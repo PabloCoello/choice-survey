@@ -6,6 +6,8 @@ suppressMessages(library(utf8))
 
 
 get_answer <- function(conf) {
+  #' Reads and save keyboard input as answer, formatting it in binnary format.
+  
   n.alts <- conf[['design_conf']][['n.alts']]
   cat(paste("Choose alternative [1-", n.alts, "]: ", sep = ''))
   answer <- readLines("stdin", n = 1)
@@ -22,6 +24,8 @@ get_answer <- function(conf) {
 
 
 set_rownames <- function(set, i) {
+  #' Set row names.
+  
   names <- c()
   for (n in 1:nrow(set$set)) {
     names[n] <- paste('set', i, '.alt', n , sep = '')
@@ -32,7 +36,9 @@ set_rownames <- function(set, i) {
 
 
 format_set_print <- function(des, i, design, conf) {
-  set <- des[grep(paste('set', i, '.alt', sep = ''), rownames(des)), ]
+  #' Formats the console output for the questions.
+  
+  set <- des[grep(paste('set', i, '.alt', sep = ''), rownames(des)),]
   dec <-
     Decode(
       des = set,
@@ -43,21 +49,25 @@ format_set_print <- function(des, i, design, conf) {
   design <- t(dec$design)
   rownames(design) <- conf[['design_conf']][['attributes']]
   colnames(design) <- conf[['design_conf']][['alternatives']]
-  utf8_print(knitr::kable(design, 'simple', align = "lccrr", escape=TRUE), char=100)
+  utf8_print(knitr::kable(design, 'simple', align = "lccrr", escape = TRUE),
+             char = 100)
 }
 
 
+# Set environment and conf:
 cores <- detectCores(all.tests = FALSE, logical = TRUE)
 cluster_name <- makeCluster(cores, type = "SOCK")
-
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
+
+# Read design:
 design <- readRDS(paste('./Designs/',
                         conf[['design_conf']][['design_name']],
                         '.rds',
                         sep = ''))
 
 
+# Deploy adaptive survey:
 i <- 0
 des <- design[['D']]$design
 resp <- c()
@@ -96,8 +106,10 @@ while (i < conf[['survey_conf']][['n.sets_survey']]) {
   }
 }
 
+# Bind results:
 result <- cbind(des, resp)
 
+# Save results:
 setwd(conf[['path_to_storage']])
 write.table(
   as.data.frame(result),
