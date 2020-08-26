@@ -51,7 +51,7 @@ function analyse_data () {
 	
 	case $caso in
 		1)
-			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_data.R
+			docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_data.R
 			;;
 		2)
 			sudo nano ./conf/google_forms_conf.json
