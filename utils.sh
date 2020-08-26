@@ -24,7 +24,7 @@ function enter_dev_env () {
 }
 
 function execute () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" /bin/bash "${WO_DIR}"/utils.sh run
+	docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" /bin/bash "${WO_DIR}"/utils.sh run
 }
 
 function generate_design () {
@@ -32,7 +32,7 @@ function generate_design () {
 }
 
 function deploy_survey () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/deploy_survey.R run
+	docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/deploy_survey.R run
 }
 
 function modify_conf () {
@@ -55,11 +55,11 @@ function analyse_data () {
 			;;
 		2)
 			sudo nano ./conf/google_forms_conf.json
-			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_googleforms_data.R
+			docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_googleforms_data.R
 			;;
 		3)
 			sudo nano ./conf/multicriteria_conf.json
-			docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/saaty_multicriteria.R
+			docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/saaty_multicriteria.R
 			;;
 		4)
 			echo 'Return';
