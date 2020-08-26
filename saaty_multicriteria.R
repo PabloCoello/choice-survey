@@ -87,7 +87,6 @@ extract_weights <- function(normalised_matrix){
   return(toret)
 }
 
-setwd(here::here())
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 multi_conf <- fromJSON(file = './conf/multicriteria_conf.json')
