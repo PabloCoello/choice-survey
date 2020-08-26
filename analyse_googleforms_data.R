@@ -5,6 +5,10 @@ suppressMessages(library(readxl))
 
 
 get_design <- function(path) {
+  #' Reads design.xlsx file from google-data folder.
+  #'
+  #' Also formats desing into a matrix with colnames.
+  
   design <- read_excel(path)
   names <- design$...1
   design[, 1] <- NULL
@@ -15,13 +19,22 @@ get_design <- function(path) {
   return(design)
 }
 
+
 format_nochoice <- function(data) {
+  #' Format no choice design version.
+  
   data <-
     data[!grepl('.alt4', rownames(data)), !colnames(data) == 'no.choice.cte']
   return(data)
 }
 
+
 format_df <- function(df) {
+  #' Perform formatting to raw dataframe from google forms.
+  #'
+  #' Note that questions are hardcoded in the function and are replaced by
+  #' numbers.
+  
   df <-
     df[, grep('¿En qué alternativa preferiría aplicar', colnames(df))]
   for (col in 1:ncol(df)) {
@@ -33,7 +46,13 @@ format_df <- function(df) {
   return(df)
 }
 
+
 encode_df <- function(df) {
+  #' Transforms levels of answers in number codifications.
+  #'
+  #' Note that answer alternatives are hardcoded into the function.
+  #' If there is an na answer, all the respondent answers are eliminated.
+  
   narows <- c()
   for (row in 1:nrow(df)) {
     for (col in 1:ncol(df)) {
@@ -56,11 +75,14 @@ encode_df <- function(df) {
       }
     }
   }
-  df <- df[-narows, ]
+  df <- df[-narows,]
   return(df)
 }
 
+
 get_answer <- function(n, n.alts) {
+  #' Get binnary formatted answers.
+  
   answer <- n
   toret <- c()
   for (i in 1:n.alts) {
@@ -75,6 +97,8 @@ get_answer <- function(n, n.alts) {
 
 
 get_data <- function(df, design) {
+  #' Binds data and answers for each respondent in the appropiate format.
+  
   for (respondent in 1:nrow(df)) {
     resp <- c()
     for (question in 1:ncol(df)) {
@@ -93,6 +117,9 @@ get_data <- function(df, design) {
 
 
 get_estimation <- function(data, forms_conf) {
+  #' Performs the econometric estimation to the data taking into consideration
+  #' if there is a no choice option in the survey.
+  
   formula <- as.formula(forms_conf[['formula']])
   
   if (forms_conf[['no.choice']]) {
@@ -129,23 +156,27 @@ get_estimation <- function(data, forms_conf) {
   return(est)
 }
 
+# Set environment and conf:
 setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 forms_conf <- fromJSON(file = './conf/google_forms_conf.json')
 
-
+# Preprocess data:
 df <- read_excel(forms_conf[['path_to_file']])
 df <- format_df(df)
 df <- encode_df(df)
 
-
+# Load design:
 if (forms_conf[['means']]) {
   design <- get_design(path = forms_conf[['path_to_design_means']])
 } else{
   design <- get_design(path = forms_conf[['path_to_design']])
 }
 
+# Perform estimation:
 data <- get_data(df, design)
 est <- get_estimation(data, forms_conf)
+
+# Show results:
 summary(est)
 cat('\n\n')
