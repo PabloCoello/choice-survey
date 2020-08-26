@@ -28,10 +28,7 @@ RUN R -e "install.packages('idefix',dependencies=TRUE, repos='http://cran.rstudi
     && R -e "install.packages('utf8',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
     && R -e "install.packages('xml2',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
     && R -e "install.packages('Rchoice',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
-    && R -e "install.packages('rJava',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
-    && R -e "install.packages('xlsx',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
-    && R -e "install.packages('stringr',dependencies=TRUE, repos='http://cran.rstudio.com/')" \
-    && R -e "install.packages('mlogit',dependencies=TRUE, repos='http://cran.rstudio.com/')" 
+    && R -e "install.packages('stringr',dependencies=TRUE, repos='http://cran.rstudio.com/')" 
 
 
 WORKDIR /opt/choice-survey/
