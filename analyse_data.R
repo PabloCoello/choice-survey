@@ -2,7 +2,7 @@ suppressMessages(library(idefix))
 suppressMessages(library(rjson))
 suppressMessages(library(Rchoice))
 
-
+print(sessionInfo())
 gen_formula <- function(data) {
   #' Builds as.formula object for estimation.
   
