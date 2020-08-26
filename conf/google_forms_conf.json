@@ -4,7 +4,7 @@
     "path_to_design_means": "./google-data/design_means.xlsx",
     "model": "logit",
     "means": true,
-    "formula": "Choice ~ no.choice.cte + Var1 + Var2 + Var3 + Var4",
+    "formula": "Choice ~ no.choice.cte + VE1 + VS2 + VM3 + CT4",
     "no.choice": true,
     "n.alts": 3,
     "n.sets": 8
