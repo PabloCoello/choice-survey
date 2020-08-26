@@ -11,8 +11,11 @@ RUN apt-get update && apt-get install -y \
                 libssl-dev \
                 libxml2-dev \
                 default-jre \
-                default-jdk
+                default-jdk \
+                locales
 
+RUN locale-gen es_ES.UTF-8
+RUN update-locale LANG=es_ES.UTF-8
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
