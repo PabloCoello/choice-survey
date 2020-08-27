@@ -75,8 +75,12 @@ encode_df <- function(df) {
       }
     }
   }
-  df <- df[-narows,]
-  return(df)
+  if(is.null(narows)){
+    return(df)
+  }else{
+    df <- df[-narows,]
+    return(df)
+  }
 }
 
 
