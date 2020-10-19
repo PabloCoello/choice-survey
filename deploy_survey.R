@@ -34,23 +34,42 @@ set_rownames <- function(set, i) {
   return(set)
 }
 
+get_set <- function(i, des){
+  index <- grep(paste('set', i, '.alt', sep = ''), rownames(des))
+  index <- c(index, max(index)+1)
+  return(des[index,])
+}
+
 
 format_set_print <- function(des, i, design, conf) {
   #' Formats the console output for the questions.
   
-  set <- des[grep(paste('set', i, '.alt', sep = ''), rownames(des)),]
+  if (conf[['design_conf']][['no.choice']]) {
+    no.choice <-
+      conf[['design_conf']][['n.alts']] # always put the no.choice alternative at the end in the conf
+    conf[['design_conf']][['alternatives']] <-
+      c(conf[['design_conf']][['alternatives']], 'Ninguna de las alternativas')
+  } else{
+    no.choice <- NULL
+  }
+  
+  set <- get_set(i, des)
+  
   dec <-
     Decode(
       des = set,
       n.alts = conf[['design_conf']][['n.alts']],
       lvl.names = design[['labels']],
-      coding = conf[["design_conf"]][['att_code']]
+      alt.cte = conf[["design_conf"]][['alt.cte']],
+      coding = conf[["design_conf"]][['att_code']],
+      no.choice = no.choice
     )
   design <- t(dec$design)
   rownames(design) <- conf[['design_conf']][['attributes']]
   colnames(design) <- conf[['design_conf']][['alternatives']]
-  utf8_print(knitr::kable(design, 'simple', align = "lccrr", escape = TRUE),
-             char = 100)
+  print(design)
+  #utf8_print(knitr::kable(design, 'simple', align = "lccrr", escape = TRUE),
+  #           char = 100)
 }
 
 
@@ -66,6 +85,10 @@ design <- readRDS(paste('./Designs/',
                         '.rds',
                         sep = ''))
 
+
+  if (conf[['design_conf']][['no.choice']]) {
+    conf[['design_conf']][['n.alts']] <- conf[['design_conf']][['n.alts']] + 1
+  }
 
 # Deploy adaptive survey:
 i <- 0
@@ -99,6 +122,7 @@ while (i < conf[['survey_conf']][['n.sets_survey']]) {
         reduce = TRUE
       )
     set <- set_rownames(set, i)
+    print(set$error)
     des <- rbind(des, set$set)
     format_set_print(des, i, design, conf)
     
