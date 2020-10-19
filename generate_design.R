@@ -49,14 +49,23 @@ generate_design <- function(conf) {
   
   design[['cs']] <-
     Profiles(lvls = design[['lvls']], coding = conf[['att_code']])
-  design[['M']] <-
+  draws <-
     MASS::mvrnorm(n = 500, mu = conf[['mu']], Sigma = design[['sigma']])
+  
+  if(conf[['no.choice']]){
+    design[['M']] <- list(draws[,1:sum(conf[['alt.cte']])], draws[,sum(conf[['alt.cte']])]:length(mu))
+  }else{
+    design[['M']] <- draws
+  }
+  
+
   design[['D']] <- Modfed(
     cand.set = design[['cs']],
     n.sets = conf[['n.sets_design']],
     n.alts = conf[['n.alts']],
     alt.cte = conf[['alt.cte']],
-    par.draws = design[['M']]
+    par.draws = design[['M']],
+    no.choice = conf[['no.choice']]
   )
   return(design)
 }
