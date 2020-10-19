@@ -1,17 +1,17 @@
 {
   "path_to_storage": "./Results",
   "design_conf": {
-    "design_name": "adaptive_01",
+    "design_name": "bayes_04_12_onlymain",
     "attributes": [
-      "Vulnerabilidad economica",
-      "Vulnerabilidad social",
-      "Vulnerabilidad medioambiental",
+      "Valor económico en riesgo",
+      "Servicios ecosistémicos culturales en riesgo",
+      "Servicios ecosistémicos medioambientales en riesgo",
       "Coste del tratamiento"
     ],
-    "att_code": ["D", "D", "D", "D"],
-    "labels1": ["0 euros por ha", "1.000 euros por ha", "2.000 euros por ha"],
+    "att_code": ["D", "D", "D", "D", "D"],
+    "labels1": ["0 euros por ha", "3.000 euros por ha", "5.000 euros por ha"],
     "labels2": ["Baja", "Media", "Alta"],
-    "labels3": ["No significativa", "Baja", "Media", "Alta", "Muy alta"],
+    "labels3": ["Baja", "Media", "Alta"],
     "labels4": [
       "2.000 euros por ha",
       "4.000 euros por ha",
@@ -22,15 +22,16 @@
     "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
     "n.sets_design": 12,
     "n.alts": 3,
-    "alt.cte": null,
-    "mu": [0.4, 1, 0.2, 0.4, 0.3, 0.4, 0.5, 0.7, -0.1, -0.2, -0.3, -0.4],
+    "no.choice": true,
+    "alt.cte": [0, 0, 0, 0, 1],
+    "mu": [0, 0.4, 1, 0.2, 0.4, 0.3, 0.8, 0.5, 0.7, -0.1, -0.2],
     "sigma": null
   },
   "survey_conf": {
     "b.text": "Please choose the alternative you prefer",
     "i.text": "Welcome, here are some instructions ... good luck!",
     "e.text": "Thanks for taking the survey",
-    "n.sets_survey": 16
+    "n.sets_survey": 12
   },
   "analysis_conf":{
     "model":"logit"
