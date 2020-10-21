@@ -28,7 +28,7 @@
     "sigma": null
   },
   "survey_conf": {
-    "n.sets_survey": 14
+    "n.sets_survey": 18
   },
   "analysis_conf":{
     "model":"logit"
