@@ -1,0 +1,12 @@
+{
+    "name": "choice-survey-dev-env",
+    "settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "focal"
+		}
+	}
+}

@@ -46,18 +46,31 @@ generate_design <- function(conf) {
   design[['lvls']] <- gen_lvls(conf)
   design[['sigma']] <- gen_sigma(conf)
   design[['labels']] <- gen_labels(conf)
+  draws <-
+    MASS::mvrnorm(n = 500, mu = conf[['mu']], Sigma = design[['sigma']])
+  
+  if (conf[['no.choice']]) {
+    design[['M']] <-
+      list(draws[, 1:sum(conf[['alt.cte']])], 
+           draws[, (sum(conf[['alt.cte']])+1):length(conf[['mu']])])
+    conf[['n.alts']] <- conf[['n.alts']] + 1
+  } else{
+    design[['M']] <- draws
+  }
   
   design[['cs']] <-
     Profiles(lvls = design[['lvls']], coding = conf[['att_code']])
-  design[['M']] <-
-    MASS::mvrnorm(n = 500, mu = conf[['mu']], Sigma = design[['sigma']])
-  design[['D']] <- Modfed(
-    cand.set = design[['cs']],
+
+  design[['D']] <- CEA(
+    lvls = design[['lvls']],
+    coding = conf[['att_code']],
     n.sets = conf[['n.sets_design']],
     n.alts = conf[['n.alts']],
     alt.cte = conf[['alt.cte']],
-    par.draws = design[['M']]
+    par.draws = design[['M']],
+    no.choice = conf[['no.choice']]
   )
+
   return(design)
 }
 
