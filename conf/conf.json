@@ -1,7 +1,7 @@
 {
   "path_to_storage": "./Results",
   "design_conf": {
-    "design_name": "bayes_04_11_onlymain",
+    "design_name": "final_des",
     "attributes": [
       "Valor económico en riesgo",
       "Servicios ecosistémicos culturales en riesgo",
@@ -24,8 +24,8 @@
     "n.alts": 3,
     "no.choice": true,
     "alt.cte": [0, 0, 0, 1],
-    "mu": [0, 0.4, 1, 0.2, 0.4, 0.3, 0.8, 0.5, 0.7, -0.1, -0.2],
-    "sigma": null
+    "mu": [1.3746, 0.7410, 1.5486, 0.7635, 1.4775, 1.8014, 2.9080, 0, 0, -0.7395, -1.4671],
+    "sigma": [0.4332, 0.2463, 0.2633, 0.2280, 0.2185, 0.2890, 0.2839, 1, 1, 0.3383, 0.2986]
   },
   "survey_conf": {
     "n.sets_survey": 18
