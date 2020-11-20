@@ -21,7 +21,7 @@ gen_sigma <- function(conf) {
   if (is.null(conf[["sigma"]])) {
     sigma <- diag(length(conf[['mu']]))
   } else{
-    sigma <- conf[['sigma']]
+    sigma <- diag(conf[['sigma']])
   }
   return(sigma)
 }
