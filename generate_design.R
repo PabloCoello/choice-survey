@@ -21,7 +21,7 @@ gen_sigma <- function(conf) {
   if (is.null(conf[["sigma"]])) {
     sigma <- diag(length(conf[['mu']]))
   } else{
-    sigma <- diag(conf[['sigma']])
+    sigma <- diag(conf[['sigma']]*conf[['sigma']])
   }
   return(sigma)
 }
@@ -59,11 +59,12 @@ generate_design <- function(conf) {
   }
   
   design[['cs']] <-
-    Profiles(lvls = design[['lvls']], coding = conf[['att_code']])
+    Profiles(lvls = design[['lvls']], coding = conf[['att_code']], c.lvls = conf[['con.lvls']])
 
   design[['D']] <- CEA(
     lvls = design[['lvls']],
     coding = conf[['att_code']],
+    c.lvls = conf[['con.lvls']],
     n.sets = conf[['n.sets_design']],
     n.alts = conf[['n.alts']],
     alt.cte = conf[['alt.cte']],
