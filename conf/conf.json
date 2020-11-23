@@ -1,14 +1,15 @@
 {
   "path_to_storage": "./Results",
   "design_conf": {
-    "design_name": "final_des",
+    "design_name": "final_des-cont",
     "attributes": [
       "Valor económico en riesgo",
       "Servicios ecosistémicos culturales en riesgo",
       "Servicios ecosistémicos medioambientales en riesgo",
       "Coste del tratamiento"
     ],
-    "att_code": ["D", "D", "D", "D"],
+    "att_code": ["C", "D", "D", "C"],
+    "con.lvls":[[1000,3000,5000],[2000,4000,6000,8000,10000]],
     "labels1": ["0 euros por ha", "3.000 euros por ha", "5.000 euros por ha"],
     "labels2": ["Baja", "Media", "Alta"],
     "labels3": ["Baja", "Media", "Alta"],
@@ -20,12 +21,12 @@
       "10.000 euros por ha"
     ],
     "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
-    "n.sets_design": 11,
+    "n.sets_design": 8,
     "n.alts": 3,
     "no.choice": true,
     "alt.cte": [0, 0, 0, 1],
-    "mu": [1.3746, 0.7410, 1.5486, 0.7635, 1.4775, 1.8014, 2.9080, 0, 0, -0.7395, -1.4671],
-    "sigma": [0.4332, 0.2463, 0.2633, 0.2280, 0.2185, 0.2890, 0.2839, 1, 1, 0.3383, 0.2986]
+    "mu": [1.0470, 0.0003576, 0.8230949, 1.503306, 1.721042, 2.817401, -0.000172],
+    "sigma": [0.3818, 0.0000613, 0.222278, 0.213433, 0.285788, 0.277530, 0.0000327]
   },
   "survey_conf": {
     "n.sets_survey": 18
