@@ -77,6 +77,7 @@ format_set_print <- function(des, i, design, conf) {
     Decode(
       des = set,
       n.alts = conf[['design_conf']][['n.alts']],
+      c.lvls = conf[['design_conf']][['con.lvls']],
       lvl.names = design[['labels']],
       alt.cte = conf[["design_conf"]][['alt.cte']],
       coding = conf[["design_conf"]][['att_code']],
