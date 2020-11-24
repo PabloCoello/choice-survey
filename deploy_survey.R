@@ -129,6 +129,7 @@ while (i < conf[['survey_conf']][['n.sets_survey']]) {
       SeqCEA(
         des = des,
         lvls = design[['lvls']],
+        c.lvls = conf[["design_conf"]][['con.lvls']],
         coding = conf[["design_conf"]][['att_code']],
         n.alts = conf[['design_conf']][['n.alts']],
         par.draws = draws$sample,
