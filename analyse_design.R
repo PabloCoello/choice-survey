@@ -32,6 +32,10 @@ dec <- Decode(
   no.choice = conf[['design_conf']][['n.alts']]
 )
 
-cat(dec$design)
-cat(design$D$error)
-cat(design$D$inf.error)
+write.csv2(dec$design, paste('./Designs/',
+                             conf[['design_conf']][['design_name']],
+                             '.xlsx',
+                             sep = ''))
+print(dec$design)
+print(design$D$error)
+print(design$D$inf.error)
