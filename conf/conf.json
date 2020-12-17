@@ -21,7 +21,7 @@
       "10.000 euros por ha"
     ],
     "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
-    "n.sets_design": 10,
+    "n.sets_design": 9,
     "n.alts": 3,
     "no.choice": true,
     "alt.cte": [0, 0, 0, 1],
