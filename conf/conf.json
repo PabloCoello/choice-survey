@@ -1,7 +1,7 @@
 {
   "path_to_storage": "./Results",
   "design_conf": {
-    "design_name": "final_design",
+    "design_name": "webquestions_design_noadaptive",
     "attributes": [
       "Valor económico en riesgo",
       "Servicios ecosistémicos culturales en riesgo",
@@ -21,7 +21,7 @@
       "10.000 euros por ha"
     ],
     "alternatives": ["Alternativa A", "Alternativa B", "Alternativa C"],
-    "n.sets_design": 6,
+    "n.sets_design": 10,
     "n.alts": 3,
     "no.choice": true,
     "alt.cte": [0, 0, 0, 1],
