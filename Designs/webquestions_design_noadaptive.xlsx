@@ -1,0 +1,41 @@
+"";"V1";"V2";"V3";"V4"
+"set1.alt1";"1.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set1.alt2";"1.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set1.alt3";"1.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"no.choice";NA;NA;NA;NA
+"set2.alt1";"1.000 euros por ha";"100 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"2.000 euros por ha"
+"set2.alt2";"5.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set2.alt3";"1.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"10.000 euros por ha"
+"no.choice.1";NA;NA;NA;NA
+"set3.alt1";"1.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set3.alt2";"1.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"2.000 euros por ha"
+"set3.alt3";"5.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"no.choice.2";NA;NA;NA;NA
+"set4.alt1";"1.000 euros por ha";"100 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"10.000 euros por ha"
+"set4.alt2";"1.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"2.000 euros por ha"
+"set4.alt3";"5.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"4.000 euros por ha"
+"no.choice.3";NA;NA;NA;NA
+"set5.alt1";"1.000 euros por ha";"10.000 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"2.000 euros por ha"
+"set5.alt2";"5.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"10.000 euros por ha"
+"set5.alt3";"5.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"2.000 euros por ha"
+"no.choice.4";NA;NA;NA;NA
+"set6.alt1";"5.000 euros por ha";"10.000 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"2.000 euros por ha"
+"set6.alt2";"5.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set6.alt3";"1.000 euros por ha";"100 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"2.000 euros por ha"
+"no.choice.5";NA;NA;NA;NA
+"set7.alt1";"5.000 euros por ha";"1.000 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"10.000 euros por ha"
+"set7.alt2";"1.000 euros por ha";"10.000 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"10.000 euros por ha"
+"set7.alt3";"3.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"2.000 euros por ha"
+"no.choice.6";NA;NA;NA;NA
+"set8.alt1";"1.000 euros por ha";"10.000 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"10.000 euros por ha"
+"set8.alt2";"1.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"2.000 euros por ha"
+"set8.alt3";"3.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"no.choice.7";NA;NA;NA;NA
+"set9.alt1";"1.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"10.000 euros por ha"
+"set9.alt2";"1.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"10.000 euros por ha"
+"set9.alt3";"5.000 euros por ha";"100 visitantes anuales";"Zona no protegida";"6.000 euros por ha"
+"no.choice.8";NA;NA;NA;NA
+"set10.alt1";"1.000 euros por ha";"10.000 visitantes anuales";"M<U+00E1>s alta clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA y ZEC";"10.000 euros por ha"
+"set10.alt2";"5.000 euros por ha";"10.000 visitantes anuales";"Zona no protegida";"2.000 euros por ha"
+"set10.alt3";"1.000 euros por ha";"100 visitantes anuales";"Una sola clasificaci<U+00F3>n de protecci<U+00F3>n: ZEPA o ZEC";"2.000 euros por ha"
+"no.choice.9";NA;NA;NA;NA

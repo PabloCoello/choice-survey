@@ -11,8 +11,9 @@ while :
     echo "5. Deploy survey"
     echo "6. Analyse survey data"
     echo "7. Modify configuration"
-    echo "8. EXIT"
-    echo -n "Choose one option [1 - 8]: "
+    echo "8. Analyse current design"
+    echo "9. EXIT"
+    echo -n "Choose one option [1 - 9]: "
     read opcion
 
 function build_dev_image () {
@@ -29,6 +30,7 @@ function execute () {
 
 function generate_design () {
     docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/generate_design.R run
+    docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_design.R run
 }
 
 function deploy_survey () {
@@ -37,6 +39,10 @@ function deploy_survey () {
 
 function modify_conf () {
     sudo nano ./conf/conf.json
+}
+
+function analyse_design () {
+    docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/analyse_design.R run
 }
 
 function analyse_data () {
@@ -93,6 +99,9 @@ case $opcion in
         modify_conf
         ;;
     8)
+        analyse_design
+        ;;
+    9)
         echo "bye";
         exit 1
         ;;
