@@ -34,7 +34,7 @@ dec <- Decode(
 
 write.csv2(dec$design, paste('./Designs/',
                              conf[['design_conf']][['design_name']],
-                             '.xlsx',
+                             '.csv',
                              sep = ''))
 print(dec$design)
 print(design$D$error)
