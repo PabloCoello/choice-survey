@@ -1,6 +1,6 @@
 suppressMessages(library(idefix))
 suppressMessages(library(rjson))
-suppressMessages(library(Rchoice))
+suppressMessages(library(mlogit))
 
 set_nochoice <- function(conf){
   #' Set n.alts acording to no.choice option.
@@ -37,7 +37,7 @@ format_data <- function(data, conf){
   
   data <-
     Datatrans(
-      pkg = "Rchoice",
+      pkg = "mlogit",
       des = des,
       y = y,
       n.alts = conf[["design_conf"]][['n.alts']],
@@ -62,9 +62,10 @@ data <- format_data(data, conf)
 
 # Perform estimation:
 est <-
-  Rchoice(formula,
+  mlogit(formula,
           data = data,
-          family = binomial(conf[['analysis_conf']][['model']]))
+          method = "nr",
+          rpar = "n")
 
 # Show results:
 summary(est)
