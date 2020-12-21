@@ -21,10 +21,14 @@ setwd(conf[['path_to_storage']])
 files <- Sys.glob("*.csv")
 
 if(length(files) > 0){
+  ids <- c()
   for(file in files){
     proc_file <- str_split(file, ".c", 2)[[1]][1]
+    id <- as.numeric(str_split(proc_file, "_")[[1]][1])
+    
     data <- proc_data(proc_file)
-    if(length(data)>0){
+    if((length(data)>0) & !(id %in% ids)){
+      ids <- c(ids, id)
       write.table(
         as.data.frame(data),
         paste(proc_file,'_num_data.txt',sep=''),
@@ -37,3 +41,7 @@ if(length(files) > 0){
     }
   }
 }
+
+
+print(paste("Total number of responses: ", length(files)))
+print(paste("Total number of usable results: ", length(ids)))
