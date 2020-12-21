@@ -97,32 +97,30 @@ data <- LoadData(data.dir = conf[["path_to_storage"]], type = "num")
 data <- idx_format_data(data, conf)
 # Get data:
 formula <- gen_formula(data)
-data <- format_data(data, conf)
+#data <- format_data(data, conf)
 
 # Perform estimation:
 est <-
   mlogit(
     Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
-    toret,
+    data,
     rpar = c(
       Var1 = 'n',
       Var2 = 'n',
-      Var32 = 'u',
-      Var33 = 'u',
-      Var4 = 'n'
+      Var32 = 'n',
+      Var33 = 'n',
+      Var4 = 'ln'
     ),
     R = 100,
     halton = NA,
     panel = TRUE
   )
-summary(choi.mxl)
+summary(est)
 
+est.up<- update(est, correlation = TRUE)
+summary(est.up)
 
-
-xchoi.up<- update(choi.mxl, correlation = TRUE)
-summary(choi.up)
-
-cor.mlogit(choi.up)
-lrtest(choi.mxl, choi.up)
-waldtest(choi.up, correlation = FALSE)
-scoretest(choi.mxl, correlation = TRUE)
+cor.mlogit(est.up)
+lrtest(est, est.up)
+waldtest(est.up, correlation = FALSE)
+scoretest(est, correlation = TRUE)
