@@ -1,5 +1,5 @@
 {
-  "path_to_storage": "./Results",
+  "path_to_storage": "./Results/Results",
   "design_conf": {
     "design_name": "webquestions_design_noadaptive",
     "attributes": [
