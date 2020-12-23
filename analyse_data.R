@@ -94,22 +94,43 @@ setwd(system("pwd", intern = T))
 conf <- fromJSON(file = './conf/conf.json')
 conf <- set_nochoice(conf)
 data <- LoadData(data.dir = conf[["path_to_storage"]], type = "num")
+
+df <- data$Var4
+df <- data[which(data$resp == 1), 'Var4']
+unique(df)
+for(val in unique(df)){
+  print(paste('valor:', val, 'reps:', sum(df==val), sep= ' '))
+}
+
+
+
+names(data)[4:9]<-c("noChoice", "econVulnerability", "socialVulnerability", 'envVulnerability2',
+'envVulnerability3', 'coste')
+
 data <- idx_format_data(data, conf)
 # Get data:
 formula <- gen_formula(data)
 #data <- format_data(data, conf)
 
+data$econCoste <- data$econVulnerability*data$coste
+data$socialCoste <- data$socialVulnerability*data$coste
+data$env2Coste <- data$envVulnerability2*data$coste
+data$env3Coste <- data$envVulnerability3*data$coste
+data$noChoiceCoste <- data$noChoice*data$coste
+
+Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
 # Perform estimation:
 est <-
   mlogit(
-    Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
+    #Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
+    Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste + econCoste | -1,
     data,
     rpar = c(
-      Var1 = 'n',
-      Var2 = 'n',
-      Var32 = 'n',
-      Var33 = 'n',
-      Var4 = 'ln'
+      econVulnerability = 'n',
+      socialVulnerability = 'n',
+      envVulnerability2 = 'n',
+      envVulnerability3 = 'n',
+      coste = 'n'
     ),
     R = 100,
     halton = NA,
