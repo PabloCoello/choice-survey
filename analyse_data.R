@@ -11,44 +11,6 @@ set_nochoice <- function(conf){
   return(conf)
 }
 
-
-gen_formula <- function(data) {
-  #' Builds as.formula object for estimation.
-  
-  string <- c('Choice ~ ')
-  for (name in names(data)) {
-    if (grepl('Var', name)) {
-      string <- paste(string, name, sep = ' + ')
-    }
-    if (grepl('.cte', name)) {
-      string <- paste(string, name, sep = ' + ')
-    }
-  }
-  formula <- as.formula(string)
-  return(formula)
-}
-
-
-format_data <- function(data, conf){
-  #' Format data for Rchoice package.
-  
-  des <- as.matrix(data[, 3:(ncol(data) - 1)])
-  y <- data[, ncol(data)]
-  
-  data <-
-    Datatrans(
-      pkg = "mlogit",
-      des = des,
-      y = y,
-      n.alts = conf[["design_conf"]][['n.alts']],
-      n.sets = conf[["survey_conf"]][['n.sets_survey']],
-      n.resp = max(data['ID']),
-      #no.choice = conf[["design_conf"]][['no.choice']],
-      bin = TRUE
-    )
-  return(data)
-}
-
 idx_format_data <- function(data, conf){
   data$resp <- as.logical(data$resp)
   names(data)[1]<- 'id'
@@ -95,22 +57,19 @@ conf <- fromJSON(file = './conf/conf.json')
 conf <- set_nochoice(conf)
 data <- LoadData(data.dir = conf[["path_to_storage"]], type = "num")
 
-df <- data$Var4
-df <- data[which(data$resp == 1), 'Var4']
-unique(df)
-for(val in unique(df)){
-  print(paste('valor:', val, 'reps:', sum(df==val), sep= ' '))
-}
+#df <- data$Var4
+#df <- data[which(data$resp == 1), 'Var4']
+#unique(df)
+#for(val in unique(df)){
+#  print(paste('valor:', val, 'reps:', sum(df==val), sep= ' '))
+#}
 
 
 
 names(data)[4:9]<-c("noChoice", "econVulnerability", "socialVulnerability", 'envVulnerability2',
-'envVulnerability3', 'coste')
+                    'envVulnerability3', 'coste')
 
 data <- idx_format_data(data, conf)
-# Get data:
-formula <- gen_formula(data)
-#data <- format_data(data, conf)
 
 data$econCoste <- data$econVulnerability*data$coste
 data$socialCoste <- data$socialVulnerability*data$coste
@@ -118,11 +77,19 @@ data$env2Coste <- data$envVulnerability2*data$coste
 data$env3Coste <- data$envVulnerability3*data$coste
 data$noChoiceCoste <- data$noChoice*data$coste
 
-Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
+
+
 # Perform estimation:
+# https://www.rdocumentation.org/packages/mlogit/versions/1.1-1/topics/mlogit
+# Mixed Logit:
+# https://cran.r-project.org/web/packages/mlogit/vignettes/c5.mxl.html
+# https://cran.r-project.org/web/packages/mlogit/vignettes/e3mxlogit.html
+# Multinomial Probit:
+# https://cran.r-project.org/web/packages/mlogit/vignettes/e4mprobit.html
+#
+
 est <-
   mlogit(
-    #Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
     Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste + econCoste | -1,
     data,
     rpar = c(
