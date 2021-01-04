@@ -77,13 +77,10 @@ data$env2Coste <- data$envVulnerability2*data$coste
 data$env3Coste <- data$envVulnerability3*data$coste
 data$noChoiceCoste <- data$noChoice*data$coste
 
-<<<<<<< HEAD
 data$coste <- data$coste*1000
 data$socialVulnerability <- data$socialVulnerability*1000
 data$econVulnerability <- data$econVulnerability*1000
 data$coste <- data$coste*1000
-=======
->>>>>>> 37415570325a30fe4271ccebe72343cbaaeab9ac
 
 
 # Perform estimation:
@@ -97,11 +94,7 @@ data$coste <- data$coste*1000
 
 est <-
   mlogit(
-<<<<<<< HEAD
     Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste | -1,
-=======
-    Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste + econCoste | -1,
->>>>>>> 37415570325a30fe4271ccebe72343cbaaeab9ac
     data,
     rpar = c(
       econVulnerability = 'n',
