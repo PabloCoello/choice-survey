@@ -118,12 +118,16 @@ data$env2Coste <- data$envVulnerability2*data$coste
 data$env3Coste <- data$envVulnerability3*data$coste
 data$noChoiceCoste <- data$noChoice*data$coste
 
-Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
+data$coste <- data$coste*1000
+data$socialVulnerability <- data$socialVulnerability*1000
+data$econVulnerability <- data$econVulnerability*1000
+data$coste <- data$coste*1000
+
+
 # Perform estimation:
 est <-
   mlogit(
-    #Choice ~ alt4.cte + Var1 + Var2 + Var32 + Var33 + Var4 | 0,
-    Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste + econCoste | -1,
+    Choice ~ noChoice + econVulnerability + socialVulnerability + envVulnerability2 + envVulnerability3 + coste | -1,
     data,
     rpar = c(
       econVulnerability = 'n',
@@ -137,6 +141,13 @@ est <-
     panel = TRUE
   )
 summary(est)
+
+coef(est)['econVulnerability'] / coef(est)['coste']
+coef(est)['socialVulnerability'] / coef(est)['coste']
+coef(est)['envVulnerability2'] / (coef(est)['coste']/1000)
+coef(est)['envVulnerability3'] / (coef(est)['coste']/1000)
+
+pnorm(- coef(est)['coste'] / coef(est)['sd.coste'])
 
 est.up<- update(est, correlation = TRUE)
 summary(est.up)
